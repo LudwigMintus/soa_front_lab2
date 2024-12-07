@@ -1,0 +1,27 @@
+/* Сбрасываем все отступы и границы */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Убираем отступы у body */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif; /* или любой другой шрифт */
+  background-color: #f5f5f5; /* Пример фона */
+}
+
+/* Убираем отступы у html */
+html {
+  height: 100%;
+}
+
+/* Если нужно, можно задать ширину на корневой контейнер */
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
