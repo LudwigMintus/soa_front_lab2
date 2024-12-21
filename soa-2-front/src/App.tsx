@@ -34,7 +34,7 @@ const App: React.FC = () => {
         if (dataSource === 'default') {
             fetchMovies();
         }
-        if(dataSource === 'custom'){
+        if(dataSource === 'filter'){
             fetchMoviesOscar();
         }
     }, [page, pageSize, sortField, sortOrder, dataSource]);

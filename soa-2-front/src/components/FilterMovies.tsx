@@ -19,7 +19,7 @@ import {
     deleteMoviesByRating,
     rewardMoviesByRating,
     honorMoviesByLength,
-  //  getMovies
+  // getMovies
 } from '../api';
 
 interface FilterMoviesProps {
@@ -39,6 +39,11 @@ const FilterMovies: React.FC<FilterMoviesProps> = ({ onMoviesFetched, page, page
     const [honorLength, setHonorLength] = useState<number>(0);
     const [oscarsToAdd, setOscarsToAdd] = useState<number>(0);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+    const [isVisible] = useState(false);
+
+
+    //setIsVisible(false); // Переключение видимости
+
 
     const handleOscarFilter = async () => {
         try {
@@ -136,6 +141,7 @@ const FilterMovies: React.FC<FilterMoviesProps> = ({ onMoviesFetched, page, page
         localStorage.clear();
     };
 
+
     return (
         <div>
             <Grid container spacing={2}>
@@ -196,19 +202,22 @@ const FilterMovies: React.FC<FilterMoviesProps> = ({ onMoviesFetched, page, page
                     </FormControl>
                 </Grid>
 
-                <Grid item xs={12} sm={6} md={3}>
-                    <FormControl fullWidth>
-                        <InputLabel>Sort Order</InputLabel>
-                        <Select
-                            value={sortOrder}
-                            onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
-                            fullWidth
-                        >
-                            <MenuItem value="asc">Ascending</MenuItem>
-                            <MenuItem value="desc">Descending</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Grid>
+                {isVisible && ( // Условный рендеринг
+                    <Grid item xs={12} sm={6} md={3}>
+                        <FormControl fullWidth>
+                            <InputLabel>Sort Order</InputLabel>
+                            <Select
+                                value={sortOrder}
+                                onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
+                                fullWidth
+                            >
+                                <MenuItem value="asc">Ascending</MenuItem>
+                                <MenuItem value="desc">Descending</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                )}
+
 
                 <Grid item xs={12} sm={6} md={3}>
                     <TextField
